@@ -12,6 +12,7 @@ To see the model performance click the following links:
 \* _model was only trained on track 1 data_
 
 [//]: # (Image References)
+[model]: ./images/model.png "Model Visualization"
 [steering_hist]: ./images/steering_angle_histogram.png "Steering Angle"
 [cropped_image]: ./images/cropped_image.png "Cropped Image"
 [flipped]: ./images/flipped.png "Flipped Image"
@@ -62,6 +63,10 @@ I used model similar to one described in [this paper](http://images.nvidia.com/c
 The model includes ELU (Exponential Linear Units) layers to introduce nonlinearity, and the data is resized and normalized in the model using a Keras lambda layer, and dropout were used at various stages to avoid overfitting.
 
 Following image describes model architecture (_the `lambda_1` layer is the layer used for resizing the image, and `lambda_2` is the layer used for normalizing images_).
+
+![Model Defination][model]
+
+The complete model defination is present in function model_nvidia() at [line 30 in model.py](https://github.com/erhiteshkumar/Udacity/blob/master/CarND-Behavioral-Cloning-P3/model.py#L30).
 
 ## Training and Validation Data
 
