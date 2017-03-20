@@ -19,18 +19,6 @@ To see the model performance click the following links:
 [left_center_right]: ./images/left_center_right.png "Left and Right Camera Image"
 [translated]: ./images/translated.png "Translated Image"
 
-Outline 
----
-1. **Goals and Objective**
-
-2. **Code Structure**
-
-3. **Model Architecture**
-
-4. **Model Testing**
-
-5. **Conclusion**
-
 ## Goals and Objective
 
 The goals / steps of this project are the following:
@@ -132,7 +120,7 @@ Following techniques were used for image augmentations:
 ## Parameter Tuning
 The model used an adam optimizer for minimizing **Mean Squared Error** as loss function. The ***initial learning rate** was choosen as **0.001** as the model did not converge well with the default learning rate of 0.01. The samples per epochs were decided on basis of the lenght of training data, and **epochs** used for training were **50** keeping in account that the model did not overfit (_this was ensured by keeping check on validation loss during training_).
 
-## Model Generalization
+## Conclusion
 The model was trained using images obtained from track 1 alone and it worked without any further tuning for **track1**. 
 
 ## What more can be done?
