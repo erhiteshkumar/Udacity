@@ -27,7 +27,6 @@ The steps of this project are as follows:
 [image3]: ./output_images/binary.jpg "Binary Example"
 [image4]: ./output_images/roi.jpg "Region of interest"
 [image5]: ./output_images/project_lines.jpg "Projected lines"
-[video1]: ./processed_project_video.mp4 "Video"
 
 
 In the following I will consider all steps individually and describe how I addressed each point in the implementation. 
