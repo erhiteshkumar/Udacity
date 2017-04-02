@@ -22,11 +22,11 @@ The steps of this project are as follows:
 ---
 [//]: # (Image References)
 
-[image1]: ./output_images/test_calibration.jpg "Undistorted"
+[image1]: ./output_images/test_calibration.png "Undistorted"
 [image2]: ./output_images/undistort_image.jpg "Undistorted"
-[image3]: ./output_images/binary.jpg "Binary Example"
-[image4]: ./output_images/roi.jpg "Region of interest"
-[image5]: ./output_images/project_lines.jpg "Projected lines"
+[image3]: ./output_images/binary.png "Binary Example"
+[image4]: ./output_images/roi.png "Region of interest"
+[image5]: ./output_images/project_lines.png "Projected lines"
 
 
 In the following I will consider all steps individually and describe how I addressed each point in the implementation. 
