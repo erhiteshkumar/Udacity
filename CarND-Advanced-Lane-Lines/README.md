@@ -24,9 +24,9 @@ The steps of this project are as follows:
 
 [image1]: ./output_images/test_calibration.jpg "Undistorted"
 [image2]: ./output_images/undistort_image.jpg "Undistorted"
-[image3]: ./output_images/stage1/binary.jpg "Binary Example"
-[image4]: ./output_images/stage1/roi.jpg "Region of interest"
-[image5]: ./output_images/stage1/project_lines.jpg "Projected lines"
+[image3]: ./output_images/binary.jpg "Binary Example"
+[image4]: ./output_images/roi.jpg "Region of interest"
+[image5]: ./output_images/project_lines.jpg "Projected lines"
 [video1]: ./processed_project_video.mp4 "Video"
 
 
