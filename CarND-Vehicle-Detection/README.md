@@ -29,7 +29,7 @@ Project code consist of following steps:
 In this project I use two datasets. First is project dataset. It is splitted into [cars images](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-car images](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip). Here is examples of dataset images:
 
 
-Steps for vehicle detection are as follow:
+# Steps for vehicle detection are as follow:
 
     1. Feature extraction and data split. Following are the steps:
        a. Car and non-car image data is downloaded from GTI vehicle image database and KITTI vision benchmark suite
@@ -54,12 +54,12 @@ The youtube video of the final implementation can be accessed by clicking the fo
 
 # Conclusion
 
-Probems:
-	1. Identifying parameters for extracting HOG features. Did some trail and error using multiple 
-	   color_spaces and orient.
-	2. Figuring out a way to filter false positives. HOG sub-sampling was better solution but I tried
-	   to figure out other solutions
-	3. Pipeline will fail in cases where images doesn't resemble training set like more-lighting or
-	   different weather conditions like snow or rain.
-Future improvements:
-	Due to limited bandwidth for this project I haven't explored to append all three features(HOG, binned color and color histogram). I believe that HSV(all channels) or H(trading speed with accuracy) with all there features(HOG,binned_color,color_histogram) should give better results than my current approach. This will improve classifer accuracy and will give more smoother object identification. Using CNN to instead of sliding window search and CNN as a feature extractor.
+  Probems:</br>
+	 1. Identifying parameters for extracting HOG features. Did some trail and error using multiple 
+	   color_spaces and orient.</br>
+	 2. Figuring out a way to filter false positives. HOG sub-sampling was better solution but I tried
+	   to figure out other solutions</br>
+	 3. Pipeline will fail in cases where images doesn't resemble training set like more-lighting or
+	   different weather conditions like snow or rain.</br>
+  Future improvements:</br>
+	 Due to limited bandwidth for this project I haven't explored to append all three features(HOG, binned color and color histogram). I believe that HSV(all channels) or H(trading speed with accuracy) with all there features(HOG,binned_color,color_histogram) should give better results than my current approach. This will improve classifer accuracy and will give more smoother object identification. Using CNN to instead of sliding window search and CNN as a feature extractor.
