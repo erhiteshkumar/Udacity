@@ -1,33 +1,65 @@
+
 # Vehicle Detection
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 
-In this project, your goal is to write a software pipeline to detect vehicles in a video (start with the test_video.mp4 and later implement on full project_video.mp4), but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
+[![Vehicle detection and tracking]](https://youtu.be/IyFqdHMh8Nk)
 
-Creating a great writeup:
----
-A great writeup should include the rubric points as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
+This is my solution to project 5 of Udacity self-driving car nanodegree. The goal is to detect and track cars on video stream.
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
+Code:
+- All commented code can be found at VehicleDetection.ipynb jupyter notebook.
+- test_images/ contains images of road to test and finetune pipeline
+- test_video.mp4, project_video.mp4 - videos for pipeline testing
+- data/ - folder for datasets unpacking
 
-You can submit your writeup in markdown or use another method and submit a pdf instead.
+# Overview
 
-The Project
----
+Project code consist of following steps:
 
-The goals / steps of this project are the following:
+1. Load datasets
+2. Extract features from datasets images
+3. Train classifier to detect cars. (I use simple default SVM with rbf kernel)
+4. Scan video frame with sliding windows and detect hot boxes
+5. Use hot boxes to estimate cars positions and sizes
+6. Use hot boxes from previous steps to remove false positives hot boxes and make detection more robust
 
-* Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
-* Optionally, you can also apply a color transform and append binned color features, as well as histograms of color, to your HOG feature vector. 
-* Note: for those first two steps don't forget to normalize your features and randomize a selection for training and testing.
-* Implement a sliding-window technique and use your trained classifier to search for vehicles in images.
-* Run your pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
-* Estimate a bounding box for vehicles detected.
+# Datasets
 
-Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-vehicle](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) examples to train your classifier.  These example images come from a combination of the [GTI vehicle image database](http://www.gti.ssr.upm.es/data/Vehicle_database.html), the [KITTI vision benchmark suite](http://www.cvlibs.net/datasets/kitti/), and examples extracted from the project video itself.   You are welcome and encouraged to take advantage of the recently released [Udacity labeled dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) to augment your training data.  
+In this project I use two datasets. First is project dataset. It is splitted into [cars images](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-car images](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip). Here is examples of dataset images:
 
-Some example images for testing your pipeline on single frames are located in the `test_images` folder.  To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `ouput_images`, and include them in your writeup for the project by describing what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
 
-**As an optional challenge** Once you have a working pipeline for vehicle detection, add in your lane-finding algorithm from the last project to do simultaneous lane-finding and vehicle detection!
+Steps for vehicle detection are as follow:
 
-**If you're feeling ambitious** (also totally optional though), don't stop there!  We encourage you to go out and take video of your own, and show us how you would implement this project on a new video!
+    1. Feature extraction and data split. Following are the steps:
+       a. Car and non-car image data is downloaded from GTI vehicle image database and KITTI vision benchmark suite
+       b. Extract features and combine them
+       c. Split data in training and test
+    2. Build classifier to predict images based on features, using LinearSVM. 
+    3. Build pipeline to detect cars. Pipeline has following steps:
+       a. Find all rectangles which has cars in image
+       b. Draw heatmap with identified boxes
+       c. Remove false positives by applying thresolds
+       d. Label the heatmap image to identify number of cars in frame
+       e. Draw identified cars areas on original image
+    4. Run pipeline on video
+       Run the above pipleine for every frame of video.
+
+You can see all details in VehicleDetection.ipynb(https://github.com/erhiteshkumar/Udacity/blob/master/CarND-Vehicle-Detection/VehicleDetection.ipynb) <br/>
+
+Images are shown after each step as required.
+
+# Video Implementation
+The youtube video of the final implementation can be accessed by clicking the following link (https://youtu.be/IyFqdHMh8Nk)
+
+# Conclusion
+
+Probems:
+	1. Identifying parameters for extracting HOG features. Did some trail and error using multiple 
+	   color_spaces and orient.
+	2. Figuring out a way to filter false positives. HOG sub-sampling was better solution but I tried
+	   to figure out other solutions
+	3. Pipeline will fail in cases where images doesn't resemble training set like more-lighting or
+	   different weather conditions like snow or rain.
+Future improvements:
+	Due to limited bandwidth for this project I haven't explored to append all three features(HOG, binned color and color histogram). I believe that HSV(all channels) or H(trading speed with accuracy) with all there features(HOG,binned_color,color_histogram) should give better results than my current approach. This will improve classifer accuracy and will give more smoother object identification. Using CNN to instead of sliding window search and CNN as a feature extractor.
